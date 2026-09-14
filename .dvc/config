@@ -1,2 +1,6 @@
 [cache]
     type = "hardlink,symlink,copy"
+[core]
+    remote = localremote
+['remote "localremote"']
+    url = C:/Users/lenevo/Desktop/dvc-storage
