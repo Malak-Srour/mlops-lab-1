@@ -105,7 +105,7 @@ I moved the Food-11 dataset into `data/food11_raw/training`, `data/food11_raw/ev
 
 When I checked my `dvc-storage` folder afterwards, it was still empty:
 
-![The dvc-storage folder still empty](../images-folder/01-dvc-storage-empty.png)
+![The dvc-storage folder still empty](images-folder/01-dvc-storage-empty.png)
 
 *Figure 1: The dvc-storage folder still empty — a sign that `dvc push` had not actually been run yet.*
 
@@ -119,7 +119,7 @@ I had simply forgotten to run `dvc push`. After running it, the data files appea
 >
 > **Answer:** Yes, a `data.dvc` file was created in the project's root folder.
 
-![Contents of the data.dvc pointer file](../images-folder/02-data-dvc-content.png)
+![Contents of the data.dvc pointer file](images-folder/02-data-dvc-content.png)
 
 *Figure 2: Contents of the data.dvc pointer file.*
 
@@ -129,7 +129,7 @@ It is a small text file containing a hash (`md5: a3a457d03c51ff8b037a833440f6ad1
 
 To check everything landed correctly, I opened my repository on GitHub:
 
-![The mlops-lab-1 repository on GitHub](../images-folder/03-github-repo.png)
+![The mlops-lab-1 repository on GitHub](images-folder/03-github-repo.png)
 
 *Figure 3: The mlops-lab-1 repository on GitHub after pushing the git and dvc configuration files.*
 
@@ -150,7 +150,7 @@ cd mlops-lab-1
 dvc pull
 ```
 
-![A fresh clone of the repository with no data folder](../images-folder/04-fresh-clone-no-data.png)
+![A fresh clone of the repository with no data folder](images-folder/04-fresh-clone-no-data.png)
 
 *Figure 4: A fresh clone of the repository in a temporary folder — only the code and the data.dvc pointer are present, the data folder itself is missing.*
 
@@ -170,29 +170,29 @@ uv add pillow
 
 I then ran the script and checked the results:
 
-![food11_processed/training/Bread with 994 images](../images-folder/05-processed-bread-994.png)
+![food11_processed/training/Bread with 994 images](images-folder/05-processed-bread-994.png)
 
 *Figure 5: data/food11_processed/training/Bread after running the script — 994 images, resized and sorted by category.*
 
-![food11_processed_mini/training/Bread capped at 100 images](../images-folder/06-processed-mini-bread-100.png)
+![food11_processed_mini/training/Bread capped at 100 images](images-folder/06-processed-mini-bread-100.png)
 
 *Figure 6: data/food11_processed_mini/training/Bread — capped at 100 images, as required.*
 
 Both folders looked correct, so I tracked the new data with dvc and pushed it, the same way as before:
 
-![Running the script then dvc add commit push and dvc push](../images-folder/07-script-dvc-add-push.png)
+![Running the script then dvc add commit push and dvc push](images-folder/07-script-dvc-add-push.png)
 
 *Figure 7: Running the script, then dvc add, git commit, git push and dvc push for the processed datasets.*
 
 While doing this, I noticed my uv project files (`pyproject.toml`, `uv.lock`, `src/`) had never actually been committed to git — only the dvc configuration had been, back in Section 2:
 
-![git status showing untracked uv project files](../images-folder/08-git-status-untracked.png)
+![git status showing untracked uv project files](images-folder/08-git-status-untracked.png)
 
 *Figure 8: git status showing the uv project files were still untracked.*
 
 I added and pushed them:
 
-![Adding committing and pushing the missing project files](../images-folder/09-git-add-commit-push-fix.png)
+![Adding committing and pushing the missing project files](images-folder/09-git-add-commit-push-fix.png)
 
 *Figure 9: Adding, committing and pushing the missing project files.*
 
@@ -200,7 +200,7 @@ I added and pushed them:
 
 Before switching commits, the data folder contained all three datasets:
 
-![The data folder with all three datasets before switching commits](../images-folder/10-data-folder-before-switch.png)
+![The data folder with all three datasets before switching commits](images-folder/10-data-folder-before-switch.png)
 
 *Figure 10: The data folder before switching commits — food11_raw, food11_processed and food11_processed_mini all present.*
 
@@ -214,11 +214,11 @@ b4718e9 Track data folder with dvc
 
 Then I checked out the older commit (from before the processed datasets existed) and ran `dvc checkout`:
 
-![Checking out the older commit and running dvc checkout](../images-folder/11-checkout-old-commit.png)
+![Checking out the older commit and running dvc checkout](images-folder/11-checkout-old-commit.png)
 
 *Figure 11: Checking out the older commit (git enters "detached HEAD" state, which is expected) and running dvc checkout.*
 
-![The data folder after checking out the older commit, only food11_raw remains](../images-folder/12-data-folder-old-commit.png)
+![The data folder after checking out the older commit, only food11_raw remains](images-folder/12-data-folder-old-commit.png)
 
 *Figure 12: The data folder after checking out the older commit — only food11_raw remains.*
 
@@ -232,10 +232,10 @@ I then returned to the present:
 C:\Users\lenevo\Desktop\mlops-lab-1>git checkout main
 ```
 
-![Running dvc checkout again after switching back to main](../images-folder/13-checkout-main-again.png)
+![Running dvc checkout again after switching back to main](images-folder/13-checkout-main-again.png)
 
 *Figure 13: Running dvc checkout again after switching back to the main branch.*
 
-![The data folder restored with all three datasets back](../images-folder/14-data-folder-restored.png)
+![The data folder restored with all three datasets back](images-folder/14-data-folder-restored.png)
 
 *Figure 14: The data folder restored — all three datasets are back.*
