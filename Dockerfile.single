@@ -1,0 +1,15 @@
+# A NAIVE single-stage image, only to compare sizes (Question 5)
+FROM python:3.10-bookworm
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+WORKDIR /app
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy
+
+# Copy everything at once (no layer ordering)
+COPY . .
+RUN uv sync --frozen --no-dev --no-install-project
+
+ENV PATH="/app/.venv/bin:$PATH"
+EXPOSE 8000
+ENTRYPOINT ["uvicorn", "src.food11.serve:app", "--host", "0.0.0.0", "--port", "8000"]
